@@ -111,7 +111,7 @@ resource "digitalocean_droplet" "www-nextcloud" {
       "export PATH=$PATH:/usr/bin",
       # Bugfix with nextcloud desktop client & complete installation to avoid users with @ symbol breaking the installation wizard
       "cd /root/nextcloud_ghost",
-      "docker exec -u www-data nextcloud_app_1 php occ maintenance:install --admin-user=atmosphere --admin-pass=${var.admin_password != "" ? var.admin_password : random_password.admin_password.result}",
+      "docker exec -u www-data nextcloud_ghost_app_1 php occ maintenance:install --admin-user=atmosphere --admin-pass=${var.admin_password != "" ? var.admin_password : random_password.admin_password.result}",
     ]
   }
   
@@ -120,10 +120,10 @@ resource "digitalocean_droplet" "www-nextcloud" {
       "export PATH=$PATH:/usr/bin",
       # Bugfix desktop client fails to connect
       "cd /root/nextcloud_ghost",
-      "docker exec -u www-data nextcloud_app_1 php occ config:system:set trusted_domains 0 --value ${var.domain}",
-      "docker exec -u www-data nextcloud_app_1 php occ config:system:set overwriteprotocol --type string --value https",
+      "docker exec -u www-data nextcloud_ghost_app_1 php occ config:system:set trusted_domains 0 --value ${var.domain}",
+      "docker exec -u www-data nextcloud_ghost_app_1 php occ config:system:set overwriteprotocol --type string --value https",
       # Disabling uneeded nextcloud plugins
-      "docker exec -u www-data nextcloud_app_1 php occ app:disable circles contactsinteraction dashboard firstrunwizard nextcloud_announcements recommendations sharebymail support survey_client updatenotification user_status weather_status",
+      "docker exec -u www-data nextcloud_ghost_app_1 php occ app:disable circles contactsinteraction dashboard firstrunwizard nextcloud_announcements recommendations sharebymail support survey_client updatenotification user_status weather_status",
     ]
   }
 }
