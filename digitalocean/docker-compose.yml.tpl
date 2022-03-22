@@ -56,8 +56,6 @@ services:
       - url=https://${url}
 
 volumes:
-  ghost-data:
-
-volumes:
   db:
   nextcloud:
+  ghost-data:
