@@ -1,0 +1,4 @@
+name: nextcloud-latest-docker
+description: Deploy standard latest docker image of nextcloud on a Digital Ocean droplet
+categories:
+- Marketing
