@@ -111,6 +111,7 @@ resource "digitalocean_droplet" "www-nextcloud" {
       "export PATH=$PATH:/usr/bin",
       # Bugfix with nextcloud desktop client & complete installation to avoid users with @ symbol breaking the installation wizard
       "cd /root/nextcloud_ghost",
+      "sleep 5s",
       "docker exec -u www-data nextcloud_ghost_app_1 php occ maintenance:install --admin-user=atmosphere --admin-pass=${var.admin_password != "" ? var.admin_password : random_password.admin_password.result}",
     ]
   }
