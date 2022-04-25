@@ -125,6 +125,8 @@ resource "digitalocean_droplet" "www-nextcloud" {
       "docker exec -u www-data nextcloud_ghost_app_1 php occ config:system:set overwriteprotocol --type string --value https",
       # Disabling uneeded nextcloud plugins
       "docker exec -u www-data nextcloud_ghost_app_1 php occ app:disable circles contactsinteraction dashboard firstrunwizard nextcloud_announcements recommendations sharebymail support survey_client updatenotification user_status weather_status",
+      # Allow it to run from subdomain
+      "docker exec -u www-data nextcloud_ghost_app_1 php occ config:system:set overwritewebroot --type string --value cloud"
     ]
   }
 }
